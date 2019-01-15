@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: Comic, cursive, sans-serif;
+    font-size: 14px;
+    background-color:#E7E7E5;
+}
+
+.Cabeçalho {
+    text-align: center;
+    /*background-color:#E7E7E5;*/
+}
+
+.Cabeçalho img{
+    height: 50%;
+    width: 10%;
+}
+
+.Chamada {
+    background-color:#DB0A77;
+    padding: 20px;
+}
+
+.Chamada h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+}
+
+.Imoveis{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.Imoveis img{
+    height: 350px;
+    width: 600px;
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+.Imoveis article{
+    margin: 30px 0px;
+}
+
+.Imoveis article h2{
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.Imoveis a{
+    padding: 10px 15px;
+    background-color:#90CB1C;
+    color: #ffffff;
+    text-decoration: none;
+}
+/*Tela Grande, break point*/
+
+@media (min-width: 600px) {
+    .Chamada{
+        padding: 70px;
+    }
+
+    .Chamada h1{
+        font-size: 50px
+    }
+
+    .Imoveis article{
+        float: left;
+        width: calc(50% - 40px);
+        
+    }
+
+    /*pseudo classe para por margin só nos pares*/
+    .Imoveis article: nth-child(even){
+        margin-left: 80px;
+    }
+}
