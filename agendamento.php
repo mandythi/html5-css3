@@ -1,3 +1,6 @@
+<?php
+    $src_img = $_GET["img"]
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,5 +16,22 @@
         <section class= "Chamada">
             <h1>Agende já e curta muito sua viagem</h1>
         </section>
+
+        <main class="agendamento">
+           <img src= <?php echo $src_img; ?> alt="$src_img">
+        </main>
+        <div class="cadastro_link"><a href="cadastro.php">Cadastre-se</a></div>
+
+        <div class="login">Login</div>
+            <form action="index.php" method="POST">
+                <label for="Usuario">Usuario:</label>
+                <input type="text" name="Usuario"/>
+        
+                <label for="Senha">Senha:</label>
+                <input type="password" name="Senha"/>
+            
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
     </body>
 </html>
