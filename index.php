@@ -1,11 +1,13 @@
 <?php
+    session_start();
+    //session_destroy();
+    
+    include_once 'php/sql.php';
 
     //executa login somente quando botão logar for acionado
     if(isset($_POST['Usuario']) && isset($_POST['Senha']))
     {
-        include_once('php/sql.php');
-        RealizarLogin($_POST['Usuario'],$_POST['Senha']);
-
+        $msg = RealizarLogin($_POST['Usuario'],$_POST['Senha']);
     }
 ?>
 
@@ -19,34 +21,51 @@
         <link rel="stylesheet" href="estilos.css">
     </head>
     <body>
-        <div class="cadastro_link"><a href="cadastro.php">Cadastre-se</a></div>
-        <?php
-            if(isset($_SESSION['usuario_nome']))
-            {
-                echo "Bem-vindo,". $_SESSION['usuario_nome'];
-                echo '<a href="php/logout.php">Sair</a>';
-            }
-            else
-            {
-                echo '<div class="login">Login</div>
-                    <form action="index.php" method="POST">
-                        <label for="Usuario">Usuario:</label>
-                        <input type="text" name="Usuario"/>
-                
-                        <label for="Senha">Senha:</label>
-                        <input type="password" name="Senha"/>
+        <div class="login">
+            
+            <?php
+                if(isset($_SESSION['usuario_nome']))
+                {
+                    //header("Location:agendamento.php");
+                    echo '<div class="usuario">Bem-vindo, '. $_SESSION['usuario_nome'] . '</div>';
+                    echo '<a class="logout" href="logout.php">Sair</a>';
                     
-                        <button type="submit">Entrar</button>
+                }
+                else
+                {
+                    echo 
+                        '<div class="cadastro_link"><a href="cadastro.php">Cadastre-se</a></div>
+                        <form action="index.php" method="POST">
+                            <label for="Usuario">Usuario:</label>
+                            <input type="text" name="Usuario"/>
+                    
+                            <label for="Senha">Senha:</label>
+                            <input type="password" name="Senha"/>
+                        
+                            <button type="submit">Entrar</button>
+                        </form>';
+                }
+            ?>
+        </div>
 
-                    </form>
-                    </div>';
-            }
-        ?>
-        
-       
-        <header class="Cabeçalho">
+        <div class="msgerror">
+            <?php
+                if(isset($msg)){
+                    echo $msg;
+                }
+                elseif(isset ($_SESSION['msg']))
+                {
+                    echo $_SESSION['msg'];
+                    DestroiSessao();
+                }
+
+                //DestroiSessao();
+            ?>
+        </div>
+
+        <div class="Cabeçalho">
             <img src="viagens.jpg" alt="viagens">
-        </header>
+        </div>
 
         <section class="Chamada">
             <h1>O melhor site de aluguel de temporada</h1>

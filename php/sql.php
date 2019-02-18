@@ -23,26 +23,45 @@
         if($log_usuario != '' && $log_senha !=''){
 
             include_once('conexao.php');
-
+            $msg = "";
             $query = "SELECT Usuario, Senha FROM usuarios WHERE Usuario = '" . $log_usuario . "' AND Senha = '" . $log_senha. "'";
             $resultado = mysqli_query($conn, $query);
             
             if(mysqli_num_rows($resultado)==1)
             {   
-                session_start();
-                $_SESSION['usuario_nome']=$_POST['Usuario'];
-    
+                $_SESSION['usuario_nome'] = $log_usuario;
             }
             else
             {
-                include_once('index.php');
-                echo '<div class="msgerror" style="color:red;">Usuário não logado</div>';
+                $msg = 'Usuário não logado';
             }
         }
         else{
-            include_once('index.php');
-            echo '<div class="msgerror" style="color:red;">Usuario e Senha devem ser preenchidos!</div>';
+            $msg = 'Usuario e Senha devem ser preenchidos!';
         }
         
+        return $msg;
     }
+
+    function DestroiSessao(){
+        if(session_status()==1)
+        {
+            session_start();
+        }
+
+        session_destroy();
+        unset($_SESSION);
+    }
+
+    function BuscaDados($busca_usuario,$busca_email)
+    {
+        include_once('conexao.php');
+        $query = "SELECT Usuario, email FROM usuarios WHERE Usuario = '".$cad_usuario."' OR email = '".$cad_email."'";
+        $resultado = mysqli_query($conn, $query);
+
+        //if(){
+
+        // }
+    }
+
 ?>

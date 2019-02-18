@@ -1,0 +1,10 @@
+CREATE DATABASE estudophp;
+
+USE estudophp;
+
+CREATE TABLE usuarios (
+	ID SMALLINT AUTO_INCREMENT PRIMARY KEY,
+    Usuario VARCHAR(255),
+    Senha VARCHAR(50),
+    email VARCHAR(255)
+);
